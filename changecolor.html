@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <title>Task 1</title>
+    <script>
+        document.addEventListener('DOMContentLoaded',()=>{
+            document.querySelectorAll('.color-change').forEach(button=>{
+                    button.onclick=()=>{
+                        document.querySelector('#header').style.color=button.dataset.color;
+                    };
+                });
+        });
+        
+    </script>
+    <body>
+        <h1 id="header">Hello! Welcome To Our PreIntern Group.</h1>
+        <select id="colors" name="colors">
+            <option value="black" class="color-change" data-color="black">Black</option>
+            <option value="red" class="color-change" data-color="red">Red</option>
+            <option value="blue" class="color-change" data-color="blue">Blue</option>
+            <option value="green" class="color-change" data-color="green">Green</option>
+          </select> 
+    </body>
+</html>
