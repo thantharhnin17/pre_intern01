@@ -1,40 +1,53 @@
 <!DOCTYPE html>
 <html>
     <title>Test 2</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
     <script>
+        function disablebtn(){
+                document.getElementById('btn').disabled=false;
+            }
         document.addEventListener('DOMContentLoaded',()=>{
 
             document.querySelector('#todo-list').onsubmit= ()=>{
 
-                const li=document.createElement('li');
+                var task=document.getElementById('task');
+                
+                if(task.value!=''){
 
-                li.innerHTML=document.querySelector('#task').value;
+                    document.getElementById('btn').disabled=false;
+                    const li=document.createElement('li');
 
-                document.querySelector('#list').append(li);
+                    li.innerHTML=document.querySelector('#task').value;
 
-                document.querySelector('#task').value='';
+                    document.querySelector('#list').append(li);
 
-                return false;
+                    document.querySelector('#task').value='';
+
+                    return false;
+                }
+                else{
+                    document.getElementById('btn').disabled=true;
+                    return false;
+                }
             };
         });
 
-        $(document).ready(function() {
-            $(':input[type="submit"]').prop('disabled', true);
-            $('#task').keyup(function() {
-                if($(this).val() != '') {
-                    $(':input[type="submit"]').prop('disabled', false);
-                }
-            });
-        });
+        // $(document).ready(function() {
+        //     $('#submit').prop('disabled', true);
+            
+        //     $('#task').keyup(function() {
+        //         if($(this).val() != '') {
+        //             $('#submit').prop('disabled', false);
+        //         }
+        // });
 
     </script>
     <body>
         <h1>To Do List</h1>
         <ul id="list"></ul>
         <form id="todo-list">
-            <input id="task" autocomplete="off" autofocus placeholder="Add todo-task" type="text">
-            <input type="submit">
+            <input id="task" onkeyup="disablebtn()" autocomplete="off" autofocus placeholder="Add todo-task" type="text">
+            <input type="submit" id="btn" disabled>
         </form>
     </body>
 </html>
